@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { HyperText } from "../Animation/HyperText";
 
 const TopNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,11 +28,11 @@ const TopNavbar = () => {
         {/* Left - Menu */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-sm order-2 md:order-1 text-gray-400  w-[100px] bg- tracking-widest uppercase flex items-center gap-2"
+          className="text-sm cursor-pointer order-2 md:order-1 text-gray-400  lg:w-[100px] bg- tracking-widest uppercase flex items-center gap-1"
         >
-          <span className="border-t border-white/70 w-4"></span>
+          <span className="border-t border-white/70 w-4 rotate-90"></span>
           {menuOpen ? "Close" : "Menu"}
-          <span className="border-t border-white/70 w-4"></span>
+          <span className="border-t border-white/70 w-4 rotate-90"></span>
         </button>
 
         {/* Center - Logo */}

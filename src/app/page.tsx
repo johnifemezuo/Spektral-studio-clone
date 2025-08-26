@@ -1,5 +1,6 @@
 "use client";
 
+import { HyperText } from "@/components/Animation/HyperText";
 import Loader from "@/components/Loading/Loading";
 import TopNavbar from "@/components/Navbar/TopNavbar";
 import AboutSection from "@/components/Pages/AboutSection";
@@ -33,7 +34,7 @@ export default function HomePage() {
               className="absolute inset-0 w-full h-[300px] md:h-[400px] object-cover"
               autoPlay
               muted
-              // loop
+              loop
               playsInline
             >
               <source src="/videos/game-vid.mp4" type="video/mp4" />
@@ -60,7 +61,9 @@ export default function HomePage() {
                 <span className="bg-white/10 p-3 border-r w-6 mt-9 h-5 inline-block border-white"></span>
                 <div className="flex items-center gap-4 pb-6 md:pb-12 space-x-3">
                   <h2 className="text-2xl md:text-3xl  font-bold text-gray-300 uppercase leading-tight">
-                    Imagination <br /> Engineering
+                    <HyperText className="" duration={800} startOnView delay={2}>
+                    Imagination  Engineering
+                    </HyperText>
                   </h2>
 
                   <div className="px- ">

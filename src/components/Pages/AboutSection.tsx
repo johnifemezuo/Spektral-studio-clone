@@ -1,5 +1,6 @@
 "use client";
 import UnicornScene from "unicornstudio-react";
+import { HyperText } from "../Animation/HyperText";
 
 export default function AboutSection() {
   return (
@@ -9,7 +10,10 @@ export default function AboutSection() {
           {/* LEFT CONTENT */}
           <div className="xl:min-w-[360px] space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold text-zinc-300 uppercase leading-snug">
-              Integrated Visual <br /> Development
+               <HyperText className="" duration={800} startOnView delay={2}>
+              Integrated Visual Development
+
+               </HyperText>
             </h2>
 
             <ul className="mt-6 space-y-2 text-gray-300  md:text-sm text-xs">
@@ -78,7 +82,7 @@ export default function AboutSection() {
       <div className="flex bg-white/20  h-[400px] md:h-[600px]  overflow-hidden ">
         <UnicornScene
           projectId="NzyWmgpHl3kHKhFTWUjU"
-          className="w-vw flex-1 flex h-full"
+          className="w-full  flex h-full"
           width={1950}
         />
       </div>
