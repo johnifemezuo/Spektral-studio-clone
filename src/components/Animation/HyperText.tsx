@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -46,12 +47,19 @@ export function HyperText({
     forwardMotionProps: true,
   });
 
+  // ensure server + initial client render are identical
+  const [mounted, setMounted] = useState(false);
+
   const [displayText, setDisplayText] = useState<string[]>(() =>
     children.split(""),
   );
   const [isAnimating, setIsAnimating] = useState(false);
   const iterationCount = useRef(0);
   const elementRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleAnimationTrigger = () => {
     if (animateOnHover && !isAnimating) {
@@ -124,6 +132,25 @@ export function HyperText({
     return () => cancelAnimationFrame(animationFrameId);
   }, [children, duration, isAnimating, characterSet]);
 
+  // Render stable server/client markup until mounted
+  if (!mounted) {
+    return (
+      <Component
+        ref={elementRef as any}
+        className={cn("overflow-hidden py-2 text-4xl font-bold", className)}
+        onMouseEnter={handleAnimationTrigger}
+        {...props}
+      >
+        {children.split("").map((letter, index) => (
+          <span key={index} className={cn("font-mono", letter === " " ? "w-3" : "")}>
+            {letter.toUpperCase()}
+          </span>
+        ))}
+      </Component>
+    );
+  }
+
+  // after mount, enable motion + animation
   return (
     <MotionComponent
       ref={elementRef}
